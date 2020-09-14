@@ -1,10 +1,18 @@
 object FrmLogin: TFrmLogin
   Left = 0
   Top = 0
+  Margins.Left = 0
+  Margins.Top = 0
+  Margins.Right = 0
+  Margins.Bottom = 0
+  VertScrollBar.ParentColor = False
+  BorderIcons = [biSystemMenu]
+  BorderStyle = bsSingle
   Caption = 'Login'
-  ClientHeight = 201
-  ClientWidth = 447
-  Color = clBtnFace
+  ClientHeight = 499
+  ClientWidth = 349
+  Color = clWindow
+  Ctl3D = False
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11
@@ -15,4 +23,20 @@ object FrmLogin: TFrmLogin
   Visible = True
   PixelsPerInch = 96
   TextHeight = 13
+  object pnlMain: TPanel
+    AlignWithMargins = True
+    Left = -1
+    Top = -1
+    Width = 350
+    Height = 500
+    Margins.Left = 0
+    Margins.Top = 0
+    Margins.Right = 0
+    Margins.Bottom = 0
+    Align = alCustom
+    Anchors = []
+    Color = clSilver
+    ParentBackground = False
+    TabOrder = 0
+  end
 end
