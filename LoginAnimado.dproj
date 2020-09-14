@@ -91,7 +91,7 @@
             <MainSource>MainSource</MainSource>
         </DelphiCompile>
         <DCCReference Include="uLogin.pas">
-            <Form>Form1</Form>
+            <Form>FrmLogin</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Release">
