@@ -38,5 +38,16 @@ object FrmLogin: TFrmLogin
     Color = clSilver
     ParentBackground = False
     TabOrder = 0
+    DesignSize = (
+      350
+      500)
+    object imgAvatar: TImage
+      Left = 109
+      Top = 50
+      Width = 132
+      Height = 124
+      Anchors = []
+      Stretch = True
+    end
   end
 end
