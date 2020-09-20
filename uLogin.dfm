@@ -8514,4 +8514,9 @@ object FrmLogin: TFrmLogin
       0000000000000000000000000000000000000000000000000000000000000000
       00000000000000000000000000000000000000000000}
   end
+  object timerAvatar: TTimer
+    OnTimer = timerAvatarTimer
+    Left = 295
+    Top = 103
+  end
 end

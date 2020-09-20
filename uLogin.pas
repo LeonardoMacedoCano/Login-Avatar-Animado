@@ -12,8 +12,10 @@ type
     pnlMain: TPanel;
     imgAvatar: TImage;
     imgListAvatar: TImageList;
+    timerAvatar: TTimer;
     procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
+    procedure timerAvatarTimer(Sender: TObject);
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
@@ -39,7 +41,28 @@ end;
 procedure TFrmLogin.FormShow(Sender: TObject);
 begin
   estadoLogin := 'Normal';
+  piscarAvatar := True;
   carregarImagemAvatar(0);
+  timerAvatar.Interval := 2000 + random(3000);
+end;
+
+procedure TFrmLogin.timerAvatarTimer(Sender: TObject);
+begin
+  if estadoLogin = 'Normal' then
+  begin
+    if piscarAvatar then
+    begin
+      carregarImagemAvatar(1);
+      timerAvatar.Interval := 150;
+    end
+    else
+    begin
+      carregarImagemAvatar(0);
+      timerAvatar.Interval := 2000 + random(3000);
+    end;
+
+    piscarAvatar := not piscarAvatar;
+  end;
 end;
 
 end.
