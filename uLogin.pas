@@ -16,8 +16,10 @@ type
     procedure carregarImagemAvatar(index: Integer);
   private
     FestadoLogin: String;
+    FpiscarAvatar: Boolean;
   public
     property estadoLogin: String read FestadoLogin write FestadoLogin;
+    property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
   end;
 
 var
