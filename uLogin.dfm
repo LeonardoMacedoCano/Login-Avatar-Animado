@@ -48,6 +48,15 @@ object FrmLogin: TFrmLogin
       Height = 124
       Anchors = []
       Stretch = True
+      Transparent = True
     end
+  end
+  object imgListAvatar: TImageList
+    ColorDepth = cd32Bit
+    DrawingStyle = dsTransparent
+    Height = 124
+    Width = 132
+    Left = 295
+    Top = 39
   end
 end
