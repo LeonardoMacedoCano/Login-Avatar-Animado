@@ -13,6 +13,7 @@ type
     imgAvatar: TImage;
     imgListAvatar: TImageList;
     procedure FormShow(Sender: TObject);
+    procedure carregarImagemAvatar(index: Integer);
   private
     FestadoAvatar: Integer;
   public
@@ -26,9 +27,17 @@ implementation
 
 {$R *.dfm}
 
+procedure TFrmLogin.carregarImagemAvatar(index: Integer);
+begin
+  imgAvatar.Canvas.Pen.Style := psClear;
+  imgAvatar.Canvas.Rectangle(0, 0, imgAvatar.Width + 1, imgAvatar.Height + 1);
+  imgListAvatar.GetBitmap(index, imgAvatar.Picture.Bitmap);
+end;
+
 procedure TFrmLogin.FormShow(Sender: TObject);
 begin
   estadoAvatar := 0;
+  carregarImagemAvatar(0);
 end;
 
 end.
