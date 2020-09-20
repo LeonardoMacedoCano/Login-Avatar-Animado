@@ -12,10 +12,11 @@ type
     pnlMain: TPanel;
     imgAvatar: TImage;
     imgListAvatar: TImageList;
+    procedure FormShow(Sender: TObject);
   private
-    { Private declarations }
+    FestadoAvatar: Integer;
   public
-    { Public declarations }
+    property estadoAvatar: Integer read FestadoAvatar write FestadoAvatar;
   end;
 
 var
@@ -24,5 +25,10 @@ var
 implementation
 
 {$R *.dfm}
+
+procedure TFrmLogin.FormShow(Sender: TObject);
+begin
+  estadoAvatar := 0;
+end;
 
 end.
