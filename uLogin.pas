@@ -15,9 +15,9 @@ type
     procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
   private
-    FestadoAvatar: Integer;
+    FestadoLogin: String;
   public
-    property estadoAvatar: Integer read FestadoAvatar write FestadoAvatar;
+    property estadoLogin: String read FestadoLogin write FestadoLogin;
   end;
 
 var
@@ -36,7 +36,7 @@ end;
 
 procedure TFrmLogin.FormShow(Sender: TObject);
 begin
-  estadoAvatar := 0;
+  estadoLogin := 'Normal';
   carregarImagemAvatar(0);
 end;
 
