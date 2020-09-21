@@ -18,6 +18,7 @@ type
     lblSenha: TLabel;
     edtSenha: TEdit;
     btnEntrar: TButton;
+    checkBoxMostrar: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
     procedure timerAvatarTimer(Sender: TObject);

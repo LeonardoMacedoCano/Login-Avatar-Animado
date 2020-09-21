@@ -9,7 +9,7 @@ object FrmLogin: TFrmLogin
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Login'
-  ClientHeight = 481
+  ClientHeight = 496
   ClientWidth = 349
   Color = clWindow
   Ctl3D = False
@@ -29,7 +29,7 @@ object FrmLogin: TFrmLogin
     Left = -1
     Top = -1
     Width = 350
-    Height = 482
+    Height = 497
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -41,10 +41,10 @@ object FrmLogin: TFrmLogin
     TabOrder = 0
     DesignSize = (
       350
-      482)
+      497)
     object imgAvatar: TImage
       Left = 109
-      Top = 46
+      Top = 49
       Width = 132
       Height = 124
       Anchors = []
@@ -124,7 +124,7 @@ object FrmLogin: TFrmLogin
       ParentShowHint = False
       PasswordChar = '*'
       ShowHint = False
-      TabOrder = 1
+      TabOrder = 2
     end
     object btnEntrar: TButton
       Left = 35
@@ -141,7 +141,29 @@ object FrmLogin: TFrmLogin
       Font.Style = [fsBold]
       ParentDoubleBuffered = False
       ParentFont = False
-      TabOrder = 2
+      TabOrder = 3
+    end
+    object checkBoxMostrar: TCheckBox
+      Left = 250
+      Top = 302
+      Width = 65
+      Height = 17
+      Cursor = crHandPoint
+      Hint = 'Mostar senha'
+      Caption = 'Mostrar'
+      Ctl3D = False
+      DoubleBuffered = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentCtl3D = False
+      ParentDoubleBuffered = False
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = True
+      TabOrder = 1
     end
   end
   object imgListAvatar: TImageList
