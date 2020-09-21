@@ -9,7 +9,7 @@ object FrmLogin: TFrmLogin
   BorderIcons = [biSystemMenu]
   BorderStyle = bsSingle
   Caption = 'Login'
-  ClientHeight = 499
+  ClientHeight = 481
   ClientWidth = 349
   Color = clWindow
   Ctl3D = False
@@ -29,7 +29,7 @@ object FrmLogin: TFrmLogin
     Left = -1
     Top = -1
     Width = 350
-    Height = 500
+    Height = 482
     Margins.Left = 0
     Margins.Top = 0
     Margins.Right = 0
@@ -41,15 +41,16 @@ object FrmLogin: TFrmLogin
     TabOrder = 0
     DesignSize = (
       350
-      500)
+      482)
     object imgAvatar: TImage
       Left = 109
-      Top = 50
+      Top = 46
       Width = 132
       Height = 124
       Anchors = []
       Stretch = True
       Transparent = True
+      ExplicitTop = 50
     end
     object lblEmail: TLabel
       Left = 35
@@ -121,8 +122,26 @@ object FrmLogin: TFrmLogin
       MaxLength = 50
       ParentFont = False
       ParentShowHint = False
+      PasswordChar = '*'
       ShowHint = False
       TabOrder = 1
+    end
+    object btnEntrar: TButton
+      Left = 35
+      Top = 395
+      Width = 280
+      Height = 50
+      Cursor = crHandPoint
+      Caption = 'Entrar'
+      DoubleBuffered = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentDoubleBuffered = False
+      ParentFont = False
+      TabOrder = 2
     end
   end
   object imgListAvatar: TImageList

@@ -17,6 +17,7 @@ type
     edtEmail: TEdit;
     lblSenha: TLabel;
     edtSenha: TEdit;
+    btnEntrar: TButton;
     procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
     procedure timerAvatarTimer(Sender: TObject);
