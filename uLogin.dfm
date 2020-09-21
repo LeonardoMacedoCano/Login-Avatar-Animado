@@ -53,7 +53,7 @@ object FrmLogin: TFrmLogin
     end
     object lblEmail: TLabel
       Left = 35
-      Top = 224
+      Top = 209
       Width = 32
       Height = 16
       Caption = 'Email'
@@ -64,16 +64,29 @@ object FrmLogin: TFrmLogin
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object lblSenha: TLabel
+      Left = 35
+      Top = 301
+      Width = 40
+      Height = 16
+      Caption = 'Senha'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object edtEmail: TEdit
       AlignWithMargins = True
       Left = 35
-      Top = 246
+      Top = 231
       Width = 280
-      Height = 35
+      Height = 50
       Cursor = crHandPoint
       BevelKind = bkTile
       BevelOuter = bvRaised
-      BevelWidth = 5
+      BevelWidth = 9
       BorderStyle = bsNone
       Color = clSilver
       Font.Charset = DEFAULT_CHARSET
@@ -81,11 +94,35 @@ object FrmLogin: TFrmLogin
       Font.Height = -11
       Font.Name = 'Tahoma'
       Font.Style = []
+      MaxLength = 50
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
       TabOrder = 0
       TextHint = 'email@dominio.com'
+    end
+    object edtSenha: TEdit
+      AlignWithMargins = True
+      Left = 35
+      Top = 323
+      Width = 280
+      Height = 50
+      Cursor = crHandPoint
+      BevelKind = bkTile
+      BevelOuter = bvRaised
+      BevelWidth = 9
+      BorderStyle = bsNone
+      Color = clSilver
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clBlack
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      MaxLength = 50
+      ParentFont = False
+      ParentShowHint = False
+      ShowHint = False
+      TabOrder = 1
     end
   end
   object imgListAvatar: TImageList

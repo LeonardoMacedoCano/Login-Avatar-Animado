@@ -15,6 +15,8 @@ type
     timerAvatar: TTimer;
     lblEmail: TLabel;
     edtEmail: TEdit;
+    lblSenha: TLabel;
+    edtSenha: TEdit;
     procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
     procedure timerAvatarTimer(Sender: TObject);
