@@ -101,6 +101,7 @@ object FrmLogin: TFrmLogin
       ShowHint = True
       TabOrder = 0
       TextHint = 'email@dominio.com'
+      OnChange = edtEmailChange
       OnEnter = edtEmailEnter
       OnExit = edtEmailExit
     end

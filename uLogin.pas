@@ -22,10 +22,12 @@ type
     procedure carregarImagemAvatar(index: Integer);
     procedure mudarEstadoLogin(novoEstado: String);
     procedure validarAvatarPiscar(valor1, valor2: Integer);
+    procedure validarStatusEmail;
     procedure timerAvatarTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtEmailEnter(Sender: TObject);
     procedure edtEmailExit(Sender: TObject);
+    procedure edtEmailChange(Sender: TObject);
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
@@ -50,6 +52,14 @@ begin
   imgListAvatar.GetBitmap(index, imgAvatar.Picture.Bitmap);
 end;
 
+procedure TFrmLogin.edtEmailChange(Sender: TObject);
+begin
+  if estadoLogin = 'Email' then
+  begin
+    validarStatusEmail;
+  end;
+end;
+
 procedure TFrmLogin.edtEmailEnter(Sender: TObject);
 begin
   mudarEstadoLogin('Email');
@@ -63,6 +73,7 @@ end;
 procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
   mudarEstadoLogin('Normal');
+  statusEmail := 0;
 end;
 
 procedure TFrmLogin.mudarEstadoLogin(novoEstado: String);
@@ -85,14 +96,17 @@ begin
     if Pos('@', edtEmail.Text) <> 0 then
     begin
       validarAvatarPiscar(6,5);
+      statusEmail := 2;
     end
     else if edtEmail.Text <> EmptyStr then
     begin
       validarAvatarPiscar(4,3);
+      statusEmail := 1;
     end
     else
     begin
       validarAvatarPiscar(1,2);
+      statusEmail := 0;
     end;
   end;
 
@@ -110,6 +124,33 @@ begin
   begin
     carregarImagemAvatar(valor2);
     timerAvatar.Interval := 2000 + random(3000);
+  end;
+end;
+
+procedure TFrmLogin.validarStatusEmail;
+begin
+  case statusEmail of
+    2:
+    begin
+      if Pos('@', edtEmail.Text) = 0 then
+      begin
+        timerAvatar.Interval := 1;
+      end;
+    end;
+    1:
+    begin
+      if (Pos('@', edtEmail.Text) <> 0) or (edtEmail.Text = EmptyStr) then
+      begin
+        timerAvatar.Interval := 1;
+      end;
+    end;
+    0:
+    begin
+      if edtEmail.Text <> EmptyStr then
+      begin
+        timerAvatar.Interval := 1;
+      end;
+    end;
   end;
 end;
 
