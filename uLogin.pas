@@ -29,8 +29,10 @@ type
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
+    FstatusEmail: String;
   public
     property estadoLogin: String read FestadoLogin write FestadoLogin;
+    property statusEmail: String read FstatusEmail write FstatusEmail;
     property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
   end;
 
