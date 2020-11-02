@@ -85,9 +85,22 @@ begin
       carregarImagemAvatar(0);
       timerAvatar.Interval := 2000 + random(3000);
     end;
-
-    piscarAvatar := not piscarAvatar;
+  end
+  else if estadoLogin = 'Email' then
+  begin
+    if piscarAvatar then
+    begin
+      carregarImagemAvatar(1);
+      timerAvatar.Interval := 150;
+    end
+    else
+    begin
+      carregarImagemAvatar(2);
+      timerAvatar.Interval := 2000 + random(3000);
+    end;
   end;
+
+  piscarAvatar := not piscarAvatar;
 end;
 
 end.
