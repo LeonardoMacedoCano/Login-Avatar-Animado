@@ -21,6 +21,7 @@ type
     checkBoxMostrar: TCheckBox;
     procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
+    procedure mudarEstadoLogin(novoEstado: String);
     procedure timerAvatarTimer(Sender: TObject);
   private
     FestadoLogin: String;
@@ -50,6 +51,15 @@ begin
   piscarAvatar := True;
   carregarImagemAvatar(0);
   timerAvatar.Interval := 2000 + random(3000);
+end;
+
+procedure TFrmLogin.mudarEstadoLogin(novoEstado: String);
+begin
+  if novoEstado <> estadoLogin then
+  begin
+    estadoLogin := novoEstado;
+    timerAvatar.Interval := 1;
+  end;
 end;
 
 procedure TFrmLogin.timerAvatarTimer(Sender: TObject);
