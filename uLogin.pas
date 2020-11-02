@@ -23,6 +23,8 @@ type
     procedure mudarEstadoLogin(novoEstado: String);
     procedure timerAvatarTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure edtEmailEnter(Sender: TObject);
+    procedure edtEmailExit(Sender: TObject);
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
@@ -43,6 +45,16 @@ begin
   imgAvatar.Canvas.Pen.Style := psClear;
   imgAvatar.Canvas.Rectangle(0, 0, imgAvatar.Width + 1, imgAvatar.Height + 1);
   imgListAvatar.GetBitmap(index, imgAvatar.Picture.Bitmap);
+end;
+
+procedure TFrmLogin.edtEmailEnter(Sender: TObject);
+begin
+  mudarEstadoLogin('Email');
+end;
+
+procedure TFrmLogin.edtEmailExit(Sender: TObject);
+begin
+  mudarEstadoLogin('Normal');
 end;
 
 procedure TFrmLogin.FormCreate(Sender: TObject);

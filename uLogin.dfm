@@ -101,6 +101,8 @@ object FrmLogin: TFrmLogin
       ShowHint = True
       TabOrder = 0
       TextHint = 'email@dominio.com'
+      OnEnter = edtEmailEnter
+      OnExit = edtEmailExit
     end
     object edtSenha: TEdit
       AlignWithMargins = True
