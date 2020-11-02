@@ -19,10 +19,10 @@ type
     edtSenha: TEdit;
     btnEntrar: TButton;
     checkBoxMostrar: TCheckBox;
-    procedure FormShow(Sender: TObject);
     procedure carregarImagemAvatar(index: Integer);
     procedure mudarEstadoLogin(novoEstado: String);
     procedure timerAvatarTimer(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
@@ -45,12 +45,9 @@ begin
   imgListAvatar.GetBitmap(index, imgAvatar.Picture.Bitmap);
 end;
 
-procedure TFrmLogin.FormShow(Sender: TObject);
+procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
-  estadoLogin := 'Normal';
-  piscarAvatar := True;
-  carregarImagemAvatar(0);
-  timerAvatar.Interval := 2000 + random(3000);
+  mudarEstadoLogin('Normal');
 end;
 
 procedure TFrmLogin.mudarEstadoLogin(novoEstado: String);

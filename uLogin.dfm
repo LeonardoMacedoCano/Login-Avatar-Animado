@@ -21,7 +21,7 @@ object FrmLogin: TFrmLogin
   OldCreateOrder = False
   Position = poScreenCenter
   Visible = True
-  OnShow = FormShow
+  OnCreate = FormCreate
   PixelsPerInch = 96
   TextHeight = 13
   object pnlMain: TPanel
