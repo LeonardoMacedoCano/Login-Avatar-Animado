@@ -21,6 +21,7 @@ type
     checkBoxMostrar: TCheckBox;
     procedure carregarImagemAvatar(index: Integer);
     procedure mudarEstadoLogin(novoEstado: String);
+    procedure validarAvatarPiscar(valor1, valor2: Integer);
     procedure timerAvatarTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtEmailEnter(Sender: TObject);
@@ -101,6 +102,20 @@ begin
   end;
 
   piscarAvatar := not piscarAvatar;
+end;
+
+procedure TFrmLogin.validarAvatarPiscar(valor1, valor2: Integer);
+begin
+  if piscarAvatar then
+  begin
+    carregarImagemAvatar(valor1);
+    timerAvatar.Interval := 150;
+  end
+  else
+  begin
+    carregarImagemAvatar(valor2);
+    timerAvatar.Interval := 2000 + random(3000);
+  end;
 end;
 
 end.
