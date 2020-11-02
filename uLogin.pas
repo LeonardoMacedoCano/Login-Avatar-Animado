@@ -76,28 +76,21 @@ procedure TFrmLogin.timerAvatarTimer(Sender: TObject);
 begin
   if estadoLogin = 'Normal' then
   begin
-    if piscarAvatar then
-    begin
-      carregarImagemAvatar(1);
-      timerAvatar.Interval := 150;
-    end
-    else
-    begin
-      carregarImagemAvatar(0);
-      timerAvatar.Interval := 2000 + random(3000);
-    end;
+    validarAvatarPiscar(1,0);
   end
   else if estadoLogin = 'Email' then
   begin
-    if piscarAvatar then
+    if Pos('@', edtEmail.Text) <> 0 then
     begin
-      carregarImagemAvatar(1);
-      timerAvatar.Interval := 150;
+      validarAvatarPiscar(6,5);
+    end
+    else if edtEmail.Text <> EmptyStr then
+    begin
+      validarAvatarPiscar(4,3);
     end
     else
     begin
-      carregarImagemAvatar(2);
-      timerAvatar.Interval := 2000 + random(3000);
+      validarAvatarPiscar(1,2);
     end;
   end;
 
