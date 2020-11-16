@@ -99,6 +99,8 @@ end;
 procedure TFrmLogin.edtSenhaEnter(Sender: TObject);
 begin
   mudarEstadoLogin('Senha');
+  carregarImagemAvatar(10);
+  timerAvatar.Interval := 75;
 end;
 
 procedure TFrmLogin.FormCreate(Sender: TObject);
@@ -118,7 +120,6 @@ begin
 end;
 
 procedure TFrmLogin.timerAvatarTimer(Sender: TObject);
-var estado: String;
 begin
   if estadoLogin = 'Normal' then
   begin
@@ -144,12 +145,6 @@ begin
   end
   else if estadoLogin = 'Senha' then
   begin
-    if estado <> estadoLogin then
-    begin
-      carregarImagemAvatar(10);
-      timerAvatar.Interval := 500;
-    end;
-
     if checkBoxMostrar.Checked then
     begin
       validarAvatarPiscar(9,8);
@@ -162,7 +157,6 @@ begin
     end;
   end;
 
-  estado := estadoLogin;
   piscarAvatar := not piscarAvatar;
 end;
 
