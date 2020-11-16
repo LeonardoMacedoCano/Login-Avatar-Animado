@@ -29,14 +29,17 @@ type
     procedure edtEmailExit(Sender: TObject);
     procedure edtEmailChange(Sender: TObject);
     procedure edtSenhaEnter(Sender: TObject);
+    procedure checkBoxMostrarClick(Sender: TObject);
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
+    FmostrarSenha: Boolean;
     FstatusEmail: Integer;
   public
     property estadoLogin: String read FestadoLogin write FestadoLogin;
     property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
     property statusEmail: Integer read FstatusEmail write FstatusEmail;
+    property mostrarSenha: Boolean read FmostrarSenha write FmostrarSenha;
   end;
 
 var
@@ -51,6 +54,28 @@ begin
   imgAvatar.Canvas.Pen.Style := psClear;
   imgAvatar.Canvas.Rectangle(0, 0, imgAvatar.Width + 1, imgAvatar.Height + 1);
   imgListAvatar.GetBitmap(index, imgAvatar.Picture.Bitmap);
+end;
+
+procedure TFrmLogin.checkBoxMostrarClick(Sender: TObject);
+var
+  iPasswordChar: String;
+begin
+  if not (checkBoxMostrar.Checked = mostrarSenha) then
+  begin
+    mostrarSenha := not mostrarSenha;
+    timerAvatar.Interval := 1;
+
+    if mostrarSenha then
+    begin
+      iPasswordChar := #0;
+    end
+    else
+    begin
+      iPasswordChar := '*';
+    end;
+
+    edtSenha.PasswordChar := iPasswordChar[1];
+  end;
 end;
 
 procedure TFrmLogin.edtEmailChange(Sender: TObject);
@@ -80,6 +105,7 @@ procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
   mudarEstadoLogin('Normal');
   statusEmail := 0;
+  mostrarSenha := checkBoxMostrar.Checked;
 end;
 
 procedure TFrmLogin.mudarEstadoLogin(novoEstado: String);
@@ -120,10 +146,12 @@ begin
     if checkBoxMostrar.Checked then
     begin
       validarAvatarPiscar(8,8);
+      mostrarSenha := True;
     end
     else
     begin
       validarAvatarPiscar(7,7);
+      mostrarSenha := False;
     end;
   end;
 

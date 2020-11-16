@@ -168,6 +168,7 @@ object FrmLogin: TFrmLogin
       ParentShowHint = False
       ShowHint = True
       TabOrder = 1
+      OnClick = checkBoxMostrarClick
     end
   end
   object imgListAvatar: TImageList
