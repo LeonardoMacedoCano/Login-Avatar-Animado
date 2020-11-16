@@ -99,6 +99,8 @@ end;
 procedure TFrmLogin.edtSenhaEnter(Sender: TObject);
 begin
   mudarEstadoLogin('Senha');
+  carregarImagemAvatar(10);
+  timerAvatar.Interval := 75;
 end;
 
 procedure TFrmLogin.FormCreate(Sender: TObject);
