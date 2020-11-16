@@ -149,7 +149,7 @@ object FrmLogin: TFrmLogin
     end
     object checkBoxMostrar: TCheckBox
       Left = 250
-      Top = 302
+      Top = 300
       Width = 65
       Height = 17
       Cursor = crHandPoint

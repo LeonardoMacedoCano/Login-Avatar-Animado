@@ -28,6 +28,7 @@ type
     procedure edtEmailEnter(Sender: TObject);
     procedure edtEmailExit(Sender: TObject);
     procedure edtEmailChange(Sender: TObject);
+    procedure edtSenhaEnter(Sender: TObject);
   private
     FestadoLogin: String;
     FpiscarAvatar: Boolean;
@@ -70,6 +71,11 @@ begin
   mudarEstadoLogin('Normal');
 end;
 
+procedure TFrmLogin.edtSenhaEnter(Sender: TObject);
+begin
+  mudarEstadoLogin('Senha');
+end;
+
 procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
   mudarEstadoLogin('Normal');
@@ -107,6 +113,17 @@ begin
     begin
       validarAvatarPiscar(1,2);
       statusEmail := 0;
+    end;
+  end
+  else if estadoLogin = 'Senha' then
+  begin
+    if checkBoxMostrar.Checked then
+    begin
+      validarAvatarPiscar(8,8);
+    end
+    else
+    begin
+      validarAvatarPiscar(7,7);
     end;
   end;
 
