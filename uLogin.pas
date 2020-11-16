@@ -145,7 +145,7 @@ begin
   begin
     if checkBoxMostrar.Checked then
     begin
-      validarAvatarPiscar(8,8);
+      validarAvatarPiscar(9,8);
       mostrarSenha := True;
     end
     else
