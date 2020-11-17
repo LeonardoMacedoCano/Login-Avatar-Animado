@@ -8,6 +8,10 @@ uses
   System.ImageList, Vcl.ImgList, Vcl.StdCtrls, Vcl.Mask, Vcl.DBCtrls;
 
 type
+  TEstadoLogin = (elNormal, elEmail, elSenha);
+
+  TStatusEmail = (seVazio, seMeio, seFinal);
+
   TFrmLogin = class(TForm)
     pnlMain: TPanel;
     imgAvatar: TImage;
@@ -20,7 +24,7 @@ type
     btnEntrar: TButton;
     checkBoxMostrar: TCheckBox;
     procedure carregarImagemAvatar(index: Integer);
-    procedure mudarEstadoLogin(novoEstado: String);
+    procedure mudarEstadoLogin(novoEstado: TEstadoLogin);
     procedure validarAvatarPiscar(valor1, valor2: Integer);
     procedure validarStatusEmail;
     procedure timerAvatarTimer(Sender: TObject);
@@ -31,12 +35,12 @@ type
     procedure edtSenhaEnter(Sender: TObject);
     procedure checkBoxMostrarClick(Sender: TObject);
   private
-    FestadoLogin: String;
+    FestadoLogin: TEstadoLogin;
     FpiscarAvatar: Boolean;
     FmostrarSenha: Boolean;
     FstatusEmail: Integer;
   public
-    property estadoLogin: String read FestadoLogin write FestadoLogin;
+    property estadoLogin: TEstadoLogin read FestadoLogin write FestadoLogin;
     property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
     property statusEmail: Integer read FstatusEmail write FstatusEmail;
     property mostrarSenha: Boolean read FmostrarSenha write FmostrarSenha;
@@ -80,7 +84,7 @@ end;
 
 procedure TFrmLogin.edtEmailChange(Sender: TObject);
 begin
-  if estadoLogin = 'Email' then
+  if estadoLogin = elEmail then
   begin
     validarStatusEmail;
   end;
@@ -88,29 +92,29 @@ end;
 
 procedure TFrmLogin.edtEmailEnter(Sender: TObject);
 begin
-  mudarEstadoLogin('Email');
+  mudarEstadoLogin(elEmail);
 end;
 
 procedure TFrmLogin.edtEmailExit(Sender: TObject);
 begin
-  mudarEstadoLogin('Normal');
+  mudarEstadoLogin(elNormal);
 end;
 
 procedure TFrmLogin.edtSenhaEnter(Sender: TObject);
 begin
-  mudarEstadoLogin('Senha');
+  mudarEstadoLogin(elSenha);
   carregarImagemAvatar(10);
-  timerAvatar.Interval := 200;
+  timerAvatar.Interval := 35;
 end;
 
 procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
-  mudarEstadoLogin('Normal');
+  mudarEstadoLogin(elNormal);
   statusEmail := 0;
   mostrarSenha := checkBoxMostrar.Checked;
 end;
 
-procedure TFrmLogin.mudarEstadoLogin(novoEstado: String);
+procedure TFrmLogin.mudarEstadoLogin(novoEstado: TEstadoLogin);
 begin
   if novoEstado <> estadoLogin then
   begin
@@ -121,11 +125,11 @@ end;
 
 procedure TFrmLogin.timerAvatarTimer(Sender: TObject);
 begin
-  if estadoLogin = 'Normal' then
+  if estadoLogin = elNormal then
   begin
     validarAvatarPiscar(1,0);
   end
-  else if estadoLogin = 'Email' then
+  else if estadoLogin = elEmail then
   begin
     if Pos('@', edtEmail.Text) <> 0 then
     begin
@@ -143,7 +147,7 @@ begin
       statusEmail := 0;
     end;
   end
-  else if estadoLogin = 'Senha' then
+  else if estadoLogin = elSenha then
   begin
     if checkBoxMostrar.Checked then
     begin

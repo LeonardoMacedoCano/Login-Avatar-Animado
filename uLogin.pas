@@ -10,6 +10,8 @@ uses
 type
   TEstadoLogin = (elNormal, elEmail, elSenha);
 
+  TStatusEmail = (seVazio, seMeio, seFinal);
+
   TFrmLogin = class(TForm)
     pnlMain: TPanel;
     imgAvatar: TImage;
@@ -36,11 +38,11 @@ type
     FestadoLogin: TEstadoLogin;
     FpiscarAvatar: Boolean;
     FmostrarSenha: Boolean;
-    FstatusEmail: Integer;
+    FstatusEmail: TStatusEmail;
   public
     property estadoLogin: TEstadoLogin read FestadoLogin write FestadoLogin;
     property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
-    property statusEmail: Integer read FstatusEmail write FstatusEmail;
+    property statusEmail: TStatusEmail read FstatusEmail write FstatusEmail;
     property mostrarSenha: Boolean read FmostrarSenha write FmostrarSenha;
   end;
 
@@ -108,7 +110,7 @@ end;
 procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
   mudarEstadoLogin(elNormal);
-  statusEmail := 0;
+  statusEmail := seVazio;
   mostrarSenha := checkBoxMostrar.Checked;
 end;
 
@@ -132,17 +134,17 @@ begin
     if Pos('@', edtEmail.Text) <> 0 then
     begin
       validarAvatarPiscar(6,5);
-      statusEmail := 2;
+      statusEmail := seFinal;
     end
     else if edtEmail.Text <> EmptyStr then
     begin
       validarAvatarPiscar(4,3);
-      statusEmail := 1;
+      statusEmail := seMeio;
     end
     else
     begin
       validarAvatarPiscar(1,2);
-      statusEmail := 0;
+      statusEmail := seVazio;
     end;
   end
   else if estadoLogin = elSenha then
@@ -179,21 +181,21 @@ end;
 procedure TFrmLogin.validarStatusEmail;
 begin
   case statusEmail of
-    2:
+    seFinal:
     begin
       if Pos('@', edtEmail.Text) = 0 then
       begin
         timerAvatar.Interval := 1;
       end;
     end;
-    1:
+    seMeio:
     begin
       if (Pos('@', edtEmail.Text) <> 0) or (edtEmail.Text = EmptyStr) then
       begin
         timerAvatar.Interval := 1;
       end;
     end;
-    0:
+    seVazio:
     begin
       if edtEmail.Text <> EmptyStr then
       begin
