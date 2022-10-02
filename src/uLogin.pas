@@ -31,19 +31,19 @@ type
     procedure edtSenhaEnter(Sender: TObject);
     procedure checkBoxMostrarClick(Sender: TObject);
   private
-    FestadoLogin: TEstadoLogin;
-    FpiscarAvatar: Boolean;
-    FmostrarSenha: Boolean;
-    FstatusEmail: TStatusEmail;
-    procedure carregarImagemAvatar(index: Integer);
-    procedure mudarEstadoLogin(novoEstado: TEstadoLogin);
-    procedure validarAvatarPiscar(valor1, valor2: Integer);
+    FEstadoLogin: TEstadoLogin;
+    FPiscarAvatar: Boolean;
+    FStatusEmail: TStatusEmail;
+    FMostrarSenha: Boolean;
+    procedure carregarImagemAvatar(AIndex: Integer);
+    procedure mudarEstadoLogin(ANovoEstado: TEstadoLogin);
+    procedure validarAvatarPiscar(AIndexPiscar, AIndexNaoPiscar: Integer);
     procedure validarStatusEmail;
   public
-    property estadoLogin: TEstadoLogin read FestadoLogin write FestadoLogin;
-    property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
-    property statusEmail: TStatusEmail read FstatusEmail write FstatusEmail;
-    property mostrarSenha: Boolean read FmostrarSenha write FmostrarSenha;
+    property EstadoLogin: TEstadoLogin read FEstadoLogin write FEstadoLogin;
+    property PiscarAvatar: Boolean read FPiscarAvatar write FPiscarAvatar;
+    property StatusEmail: TStatusEmail read FStatusEmail write FStatusEmail;
+    property MostrarSenha: Boolean read FMostrarSenha write FMostrarSenha;
   end;
 
 var
@@ -53,38 +53,38 @@ implementation
 
 {$R *.dfm}
 
-procedure TFrmLogin.carregarImagemAvatar(index: Integer);
+procedure TFrmLogin.carregarImagemAvatar(AIndex: Integer);
 begin
   imgAvatar.Canvas.Pen.Style := psClear;
   imgAvatar.Canvas.Rectangle(0, 0, imgAvatar.Width + 1, imgAvatar.Height + 1);
-  imgListAvatar.GetBitmap(index, imgAvatar.Picture.Bitmap);
+  imgListAvatar.GetBitmap(AIndex, imgAvatar.Picture.Bitmap);
 end;
 
 procedure TFrmLogin.checkBoxMostrarClick(Sender: TObject);
 var
-  iPasswordChar: String;
+  vPasswordChar: Char;
 begin
-  if not (checkBoxMostrar.Checked = mostrarSenha) then
+  if not (checkBoxMostrar.Checked = FMostrarSenha) then
   begin
-    mostrarSenha := not mostrarSenha;
+    FMostrarSenha := not FMostrarSenha;
     timerAvatar.Interval := 1;
 
-    if mostrarSenha then
+    if FMostrarSenha then
     begin
-      iPasswordChar := #0;
+      vPasswordChar := #0;
     end
     else
     begin
-      iPasswordChar := '*';
+      vPasswordChar := '*';
     end;
 
-    edtSenha.PasswordChar := iPasswordChar[1];
+    edtSenha.PasswordChar := vPasswordChar;
   end;
 end;
 
 procedure TFrmLogin.edtEmailChange(Sender: TObject);
 begin
-  if estadoLogin = elEmail then
+  if (FEstadoLogin = elEmail) then
   begin
     validarStatusEmail;
   end;
@@ -110,94 +110,96 @@ end;
 procedure TFrmLogin.FormCreate(Sender: TObject);
 begin
   mudarEstadoLogin(elNormal);
-  statusEmail := seVazio;
-  mostrarSenha := checkBoxMostrar.Checked;
+  FStatusEmail := seVazio;
+  FMostrarSenha := checkBoxMostrar.Checked;
 end;
 
-procedure TFrmLogin.mudarEstadoLogin(novoEstado: TEstadoLogin);
+procedure TFrmLogin.mudarEstadoLogin(ANovoEstado: TEstadoLogin);
 begin
-  if novoEstado <> estadoLogin then
+  if (ANovoEstado <> FEstadoLogin) then
   begin
-    estadoLogin := novoEstado;
+    FEstadoLogin := ANovoEstado;
     timerAvatar.Interval := 1;
   end;
 end;
 
 procedure TFrmLogin.timerAvatarTimer(Sender: TObject);
 begin
-  if estadoLogin = elNormal then
-  begin
-    validarAvatarPiscar(1,0);
-  end
-  else if estadoLogin = elEmail then
-  begin
-    if Pos('@', edtEmail.Text) <> 0 then
+  case FEstadoLogin of
+    elNormal:
     begin
-      validarAvatarPiscar(6,5);
-      statusEmail := seFinal;
-    end
-    else if edtEmail.Text <> EmptyStr then
-    begin
-      validarAvatarPiscar(4,3);
-      statusEmail := seMeio;
-    end
-    else
-    begin
-      validarAvatarPiscar(1,2);
-      statusEmail := seVazio;
+      validarAvatarPiscar(1,0);
     end;
-  end
-  else if estadoLogin = elSenha then
-  begin
-    if checkBoxMostrar.Checked then
+    elEmail:
     begin
-      validarAvatarPiscar(9,8);
-      mostrarSenha := True;
-    end
-    else
+      if (Pos('@', edtEmail.Text) <> 0) then
+      begin
+        validarAvatarPiscar(6,5);
+        FStatusEmail := seFinal;
+      end
+      else if (edtEmail.Text <> EmptyStr) then
+      begin
+        validarAvatarPiscar(4,3);
+        FStatusEmail := seMeio;
+      end
+      else
+      begin
+        validarAvatarPiscar(1,2);
+        FStatusEmail := seVazio;
+      end;
+    end;
+    elSenha:
     begin
-      validarAvatarPiscar(7,7);
-      mostrarSenha := False;
+      if checkBoxMostrar.Checked then
+      begin
+        validarAvatarPiscar(9,8);
+        FMostrarSenha := True;
+      end
+      else
+      begin
+        validarAvatarPiscar(7,7);
+        FMostrarSenha := False;
+      end;
     end;
   end;
 
-  piscarAvatar := not piscarAvatar;
+  FPiscarAvatar := not FPiscarAvatar;
 end;
 
-procedure TFrmLogin.validarAvatarPiscar(valor1, valor2: Integer);
+procedure TFrmLogin.validarAvatarPiscar(AIndexPiscar, AIndexNaoPiscar: Integer);
 begin
-  if piscarAvatar then
+  if FPiscarAvatar then
   begin
-    carregarImagemAvatar(valor1);
+    carregarImagemAvatar(AIndexPiscar);
     timerAvatar.Interval := 150;
   end
   else
   begin
-    carregarImagemAvatar(valor2);
+    carregarImagemAvatar(AIndexNaoPiscar);
     timerAvatar.Interval := 2000 + random(3000);
   end;
 end;
 
 procedure TFrmLogin.validarStatusEmail;
 begin
-  case statusEmail of
+  case FStatusEmail of
     seFinal:
     begin
-      if Pos('@', edtEmail.Text) = 0 then
+      if (Pos('@', edtEmail.Text) = 0) then
       begin
         timerAvatar.Interval := 1;
       end;
     end;
     seMeio:
     begin
-      if (Pos('@', edtEmail.Text) <> 0) or (edtEmail.Text = EmptyStr) then
+      if ((Pos('@', edtEmail.Text) <> 0) or (edtEmail.Text = EmptyStr)) then
       begin
         timerAvatar.Interval := 1;
       end;
     end;
     seVazio:
     begin
-      if edtEmail.Text <> EmptyStr then
+      if (edtEmail.Text <> EmptyStr) then
       begin
         timerAvatar.Interval := 1;
       end;
