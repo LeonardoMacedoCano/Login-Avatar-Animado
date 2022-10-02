@@ -23,10 +23,6 @@ type
     edtSenha: TEdit;
     btnEntrar: TButton;
     checkBoxMostrar: TCheckBox;
-    procedure carregarImagemAvatar(index: Integer);
-    procedure mudarEstadoLogin(novoEstado: TEstadoLogin);
-    procedure validarAvatarPiscar(valor1, valor2: Integer);
-    procedure validarStatusEmail;
     procedure timerAvatarTimer(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure edtEmailEnter(Sender: TObject);
@@ -39,6 +35,10 @@ type
     FpiscarAvatar: Boolean;
     FmostrarSenha: Boolean;
     FstatusEmail: TStatusEmail;
+    procedure carregarImagemAvatar(index: Integer);
+    procedure mudarEstadoLogin(novoEstado: TEstadoLogin);
+    procedure validarAvatarPiscar(valor1, valor2: Integer);
+    procedure validarStatusEmail;
   public
     property estadoLogin: TEstadoLogin read FestadoLogin write FestadoLogin;
     property piscarAvatar: Boolean read FpiscarAvatar write FpiscarAvatar;
